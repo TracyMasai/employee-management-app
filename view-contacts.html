@@ -1,48 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>View Contacts</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="main.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View All Contacts — Employee Management System</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <nav>
-        <h2>EMS</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="new-contact.html">New Contact</a></li>
-            <li><a href="view-contacts.html">View Contacts</a></li>
-        </ul>
-    </nav>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <div class="logo-icon">👥</div>
+      <span>EmployeeMS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="new-contact.html">➕ New Contact</a></li>
+      <li><a href="view-contacts.html">📋 View All Contacts</a></li>
+    </ul>
+  </nav>
 
-    <div class="container">
-        <h1>Employee Contacts</h1>
+  <div class="page">
 
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Department</th>
-                <th>Actions</th>
-            </tr>
-
-            <tr>
-                <td>John Doe</td>
-                <td>john@email.com</td>
-                <td>0712345678</td>
-                <td>IT</td>
-                <td>
-                    <button onclick="showDetails()">Details</button>
-                    <button onclick="editContact()">Edit</button>
-                    <button onclick="deleteContact()">Delete</button>
-                </td>
-            </tr>
-
-        </table>
+    <div class="page-header">
+      <div>
+        <h2>📋 All Employees</h2>
+        <p>
+          <span id="totalCount">—</span> employees across
+          <span id="deptCount">—</span> departments
+        </p>
+      </div>
+      <a href="new-contact.html" class="btn btn-primary">➕ Add New</a>
     </div>
 
+    <!-- Table Card -->
+    <div class="table-card">
+      <div class="table-toolbar">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search by name, email, or dept…"
+        />
+        <span style="color:var(--text-muted);font-size:0.82rem">
+          Click <strong style="color:var(--text)">Details</strong> to view full profile
+        </span>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="contactsBody">
+          <!-- Populated by main.js -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Details Modal -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>👤 <span id="modalName"></span></h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="modal-detail-row">
+        <span class="key">Employee ID</span>
+        <span class="val" id="modal-id"></span>
+      </div>
+      <div class="modal-detail-row">
+        <span class="key">Full Name</span>
+        <span class="val" id="modal-name"></span>
+      </div>
+      <div class="modal-detail-row">
+        <span class="key">Email</span>
+        <span class="val" id="modal-email"></span>
+      </div>
+      <div class="modal-detail-row">
+        <span class="key">Phone</span>
+        <span class="val" id="modal-phone"></span>
+      </div>
+      <div class="modal-detail-row">
+        <span class="key">Department</span>
+        <span class="val" id="modal-dept"></span>
+      </div>
+      <div class="modal-detail-row">
+        <span class="key">Position</span>
+        <span class="val" id="modal-position"></span>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>✏️ Edit Employee</h3>
+        <button class="modal-close" onclick="closeEditModal()">✕</button>
+      </div>
+
+      <input type="hidden" id="editId" />
+
+      <div class="form-grid" style="gap:1rem">
+
+        <div class="form-group full">
+          <label for="editName">Full Name</label>
+          <input type="text" id="editName" placeholder="Full Name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="editEmail">Email Address</label>
+          <input type="email" id="editEmail" placeholder="Email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="editPhone">Phone Number</label>
+          <input type="tel" id="editPhone" placeholder="Phone" required />
+        </div>
+
+        <div class="form-group">
+          <label for="editDept">Department</label>
+          <select id="editDept" required>
+            <option value="IT">IT / Technology</option>
+            <option value="HR">Human Resources</option>
+            <option value="FIN">Finance</option>
+            <option value="MKT">Marketing</option>
+            <option value="OPS">Operations</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="editPosition">Position / Job Title</label>
+          <input type="text" id="editPosition" placeholder="Position" required />
+        </div>
+
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveEdit()">💾 Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="main.js"></script>
 </body>
 </html>
