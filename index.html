@@ -1,27 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Employee Management System</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Management System</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <h2>EMS</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="new-contact.html">New Contact</a></li>
-            <li><a href="view-contacts.html">View Contacts</a></li>
-        </ul>
-    </nav>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <div class="logo-icon">👥</div>
+      <span>EmployeeMS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="new-contact.html">➕ New Contact</a></li>
+      <li><a href="view-contacts.html">📋 View All Contacts</a></li>
+    </ul>
+  </nav>
 
-    <!-- HOME CONTENT -->
-    <div class="container">
-        <h1>Employee Management System</h1>
-        <p>Welcome to the Employee Management System. Manage employee records easily and efficiently.</p>
+  <!-- Hero Section -->
+  <div class="page">
+    <div class="hero">
+      <div class="hero-badge">⚡ Employee Management System</div>
+
+      <h1>Manage Your <span>Team</span><br>with Clarity</h1>
+
+      <p>
+        A streamlined system for storing, viewing, and managing employee contact
+        information across all departments — fast, organised, and easy to use.
+      </p>
+
+      <div class="hero-actions">
+        <a href="new-contact.html" class="btn btn-primary">➕ Add New Employee</a>
+        <a href="view-contacts.html" class="btn btn-ghost">📋 View All Contacts</a>
+      </div>
     </div>
 
+    <!-- Stats Dashboard -->
+    <div class="stats-row">
+      <div class="stat-card teal">
+        <div class="stat-icon">👤</div>
+        <div class="stat-num" id="statTotal">—</div>
+        <div class="stat-label">Total Employees</div>
+      </div>
+
+      <div class="stat-card amber">
+        <div class="stat-icon">🏢</div>
+        <div class="stat-num" id="statDepts">—</div>
+        <div class="stat-label">Departments</div>
+      </div>
+
+      <div class="stat-card blue">
+        <div class="stat-icon">🆕</div>
+        <div class="stat-num" id="statNew">—</div>
+        <div class="stat-label">Recent Additions</div>
+      </div>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="stats-row" style="margin-top:2rem">
+      <div class="stat-card" style="cursor:pointer" onclick="location.href='new-contact.html'">
+        <div style="font-size:1.5rem;margin-bottom:0.75rem">📝</div>
+        <div style="font-weight:600;margin-bottom:0.4rem">Add New Employee</div>
+        <div style="color:var(--text-muted);font-size:0.85rem;line-height:1.5">
+          Fill in the contact form to register a new employee with their department and position details.
+        </div>
+      </div>
+      <div class="stat-card" style="cursor:pointer" onclick="location.href='view-contacts.html'">
+        <div style="font-size:1.5rem;margin-bottom:0.75rem">🔍</div>
+        <div style="font-weight:600;margin-bottom:0.4rem">View & Search Contacts</div>
+        <div style="color:var(--text-muted);font-size:0.85rem;line-height:1.5">
+          Browse all employees in a table view. Search by name, department, or email. Edit or delete records instantly.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
