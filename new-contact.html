@@ -1,34 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>New Contact</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Contact — Employee Management System</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <nav>
-        <h2>EMS</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="new-contact.html">New Contact</a></li>
-            <li><a href="view-contacts.html">View Contacts</a></li>
-        </ul>
-    </nav>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <div class="logo-icon">👥</div>
+      <span>EmployeeMS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="new-contact.html">➕ New Contact</a></li>
+      <li><a href="view-contacts.html">📋 View All Contacts</a></li>
+    </ul>
+  </nav>
 
-    <div class="container">
-        <h1>Add New Employee</h1>
+  <div class="page">
 
-        <form>
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="text" placeholder="Phone Number" required>
-            <input type="text" placeholder="Department" required>
-            <input type="text" placeholder="Position" required>
-
-            <button type="submit">Submit</button>
-        </form>
+    <div class="page-header">
+      <div>
+        <h2>➕ Add New Contact</h2>
+        <p>Fill in the form below to register a new employee in the system.</p>
+      </div>
+      <a href="view-contacts.html" class="btn btn-ghost">← Back to Contacts</a>
     </div>
 
+    <div class="form-card">
+      <form id="newContactForm" autocomplete="off">
+        <div class="form-grid">
+
+          <!-- Full Name -->
+          <div class="form-group full">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="e.g. Ann Mutiga"
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="employee@company.co.ke"
+              required
+            />
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+254 7XX XXX XXX"
+              required
+            />
+          </div>
+
+          <!-- Department -->
+          <div class="form-group">
+            <label for="dept">Department</label>
+            <select id="dept" name="dept" required>
+              <option value="" disabled selected>— Select Department —</option>
+              <option value="IT">IT / Technology</option>
+              <option value="HR">Human Resources</option>
+              <option value="FIN">Finance</option>
+              <option value="MKT">Marketing</option>
+              <option value="OPS">Operations</option>
+            </select>
+          </div>
+
+          <!-- Position -->
+          <div class="form-group">
+            <label for="position">Position / Job Title</label>
+            <input
+              type="text"
+              id="position"
+              name="position"
+              placeholder="e.g. Software Engineer"
+              required
+            />
+          </div>
+
+        </div><!-- /form-grid -->
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">✅ Save Employee</button>
+          <button type="button" id="resetBtn" class="btn btn-ghost">↺ Reset Form</button>
+        </div>
+
+      </form>
+    </div><!-- /form-card -->
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="main.js"></script>
 </body>
 </html>
